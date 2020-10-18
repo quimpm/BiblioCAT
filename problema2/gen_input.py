@@ -1,13 +1,14 @@
 import random
 
-def create_libraries(num_of_libraries, max_dist, output_file):
+def create_libraries(num_of_libraries, output_file, time):
+    max_transportation_dist = time + 1
     for i in range(num_of_libraries):
         library_spec = "L "+str(i)+" "
         for j in range(num_of_libraries):
             if i == j:
                 library_spec += "0 "
             else:
-                library_spec += (str(random.randint(1,max_dist))+" ")
+                library_spec += (str(random.randint(1,max_transportation_dist))+" ")
         library_spec += "\n"
         output_file.write(library_spec)
 
@@ -31,7 +32,7 @@ def create_readers(num_of_readers, output_file, num_of_books, time, max_num_book
 
 def create_file(num_of_libraries, num_of_books, num_of_readers, file_name, max_library_dist, max_book_value, time, max_num_books_reader_can_read):
     output_file = open(file_name, "w")
-    create_libraries(num_of_libraries, max_library_dist, output_file)
+    create_libraries(num_of_libraries, output_file, time)
     create_books(num_of_books, max_book_value, output_file)
     create_readers(num_of_readers, output_file, num_of_books, time, max_num_books_reader_can_read)
 
