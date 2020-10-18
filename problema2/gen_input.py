@@ -1,14 +1,14 @@
 import random
 
 def create_libraries(num_of_libraries, output_file, time):
-    max_transportation_dist = time + 1
+    max_transportation_time = time + 1
     for i in range(num_of_libraries):
         library_spec = "L "+str(i)+" "
         for j in range(num_of_libraries):
             if i == j:
                 library_spec += "0 "
             else:
-                library_spec += (str(random.randint(1,max_transportation_dist))+" ")
+                library_spec += (str(random.randint(1,max_transportation_time))+" ")
         library_spec += "\n"
         output_file.write(library_spec)
 
