@@ -18,14 +18,18 @@ def create_books(num_of_books, max_book_value ,output_file, num_of_libraries):
         book_spec += "\n"
         output_file.write(book_spec)
 
-#TODO: A reeder only can read one time a book
 def create_readers(num_of_readers, output_file, num_of_books, time, max_num_books_reader_can_read, num_of_libraries):
     max_reading_time = time + 1
     for i in range(num_of_readers):
         reader_spec = "R "+str(i)+" "+str(random.randint(0, num_of_libraries-1))+" "
         number_of_books_to_read = random.randint(1,max_num_books_reader_can_read)
-        books = [ random.randint(0, num_of_books-1) for j in range(number_of_books_to_read)]
-        for book in books:
+        books_set = set()
+        for j in range(number_of_books_to_read):
+            book_num = random.randint(0, num_of_books-1)
+            while book_num in books_set:
+                book_num = random.randint(0, num_of_books-1)
+            books_set.add(book_num)
+        for book in books_set:
             reader_spec += str(book)+" "+str(random.randint(1,max_reading_time))+" "
         reader_spec += "\n"
         output_file.write(reader_spec)

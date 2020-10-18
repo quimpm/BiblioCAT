@@ -40,6 +40,8 @@ class TestInputChecker(unittest.TestCase):
         self.assertFalse(self.checker.checkReader(Reader(0,-1,[(8342, 3), (232, 5)])))
         self.assertFalse(self.checker.checkReader(Reader(0,4,[(100000, 3), (232, 5)])))
         self.assertFalse(self.checker.checkReader(Reader(0,4,[(8342, 11), (232, 5)])))
+        self.assertFalse(self.checker.checkReader(Reader(0,4,[(8342, 11), (232, 5)])))
+        self.assertFalse(self.checker.checkReader(Reader(0,4,[(8342, 11), (232, 5), (8342, 11)])))
         self.assertFalse(self.checker.checkReader(Reader(0,4,[])))
 
     

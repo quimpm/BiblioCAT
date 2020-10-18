@@ -58,9 +58,11 @@ class Checker:
     def checkReader(self, reader):
         if not((reader.id_reader >= 0 and reader.id_reader < self.num_of_readers) and (reader.id_library >= 0 and reader.id_library < self.num_of_libraries) and (len(reader.books) >= 1 and len(reader.books) <= self.max_num_books_reader_can_read)):
             return False
+        books_set = set()
         for i in reader.books:
-            if not((i[0] >= 0 and i[0] < self.num_of_books) and (i[1] >= 1 and i[1] <= self.time+1)):
+            if not((i[0] >= 0 and i[0] < self.num_of_books) and i[0] not in books_set  and (i[1] >= 1 and i[1] <= self.time+1)):
                 return False
+            books_set.add(i)
         return True
 
 def createBook(line):
