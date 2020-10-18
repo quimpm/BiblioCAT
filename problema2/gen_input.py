@@ -18,6 +18,7 @@ def create_books(num_of_books, max_book_value ,output_file, num_of_libraries):
         book_spec += "\n"
         output_file.write(book_spec)
 
+#TODO: A reeder only can read one time a book
 def create_readers(num_of_readers, output_file, num_of_books, time, max_num_books_reader_can_read, num_of_libraries):
     max_reading_time = time + 1
     for i in range(num_of_readers):
@@ -29,15 +30,14 @@ def create_readers(num_of_readers, output_file, num_of_books, time, max_num_book
         reader_spec += "\n"
         output_file.write(reader_spec)
 
-
-def create_file(num_of_libraries, num_of_books, num_of_readers, file_name, max_library_dist, max_book_value, time, max_num_books_reader_can_read):
+def create_file(num_of_libraries, num_of_books, num_of_readers, file_name, max_book_value, time, max_num_books_reader_can_read):
     output_file = open(file_name, "w")
     create_libraries(num_of_libraries, output_file, time)
     create_books(num_of_books, max_book_value, output_file, num_of_libraries)
     create_readers(num_of_readers, output_file, num_of_books, time, max_num_books_reader_can_read, num_of_libraries)
 
 def main():
-    create_file(100, 100000, 1000, "input1.data", 316, 10, 6, 10)    
+    create_file(100, 100000, 1000, "input1.data", 10, 6, 10)    
 
 if __name__ == "__main__":
     main()
