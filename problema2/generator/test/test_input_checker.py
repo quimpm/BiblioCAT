@@ -1,5 +1,5 @@
 import unittest
-from input_checker import *
+from src.input_checker import *
 
 class TestInputChecker(unittest.TestCase):
 

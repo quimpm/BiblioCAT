@@ -1,4 +1,4 @@
-from gen_input import *
+from .gen_input import *
 
 class Book:
     def __init__(self, id_book, value, id_library):

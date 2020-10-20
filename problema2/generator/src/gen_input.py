@@ -35,7 +35,7 @@ def create_readers(num_of_readers, output_file, num_of_books, time, max_num_book
         output_file.write(reader_spec)
 
 def create_file(num_of_libraries, num_of_books, num_of_readers, file_name, max_book_value, time, max_num_books_reader_can_read):
-    output_file = open(file_name, "w")
+    output_file = open("../benchmarks/"+file_name, "w")
     create_libraries(num_of_libraries, output_file, time)
     create_books(num_of_books, max_book_value, output_file, num_of_libraries)
     create_readers(num_of_readers, output_file, num_of_books, time, max_num_books_reader_can_read, num_of_libraries)
