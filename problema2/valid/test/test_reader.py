@@ -38,6 +38,15 @@ class ReaderTest(unittest.TestCase):
         self.assertEqual(7, time)
         self.assertEqual([3, 3, 3, 2, 3, 3], self.reader._timing)
 
+    def test_another_read(self):
+        """
+        Test complex read book 0.
+        """
+        self.reader._timing = [3, 2, 3, 3, 1, 1]
+        score, time = self.reader.read(self.books[0], 0, 6)
+        self.assertEqual(0, score)
+        self.assertEqual(9, time)
+
     def test_read_not_interested(self):
         """
         Test if Reader is not interested in books

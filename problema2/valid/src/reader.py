@@ -39,9 +39,20 @@ class Reader:
         bdata = self._books[book.id_book]
         max_time = len(self._timing)
         for j in range(start_time, max_time):
-            if self._timing[j] < 3:
+            if self._timing[j] < 3 and self.is_readable(bdata, j):
                 return self.__if_readable(bdata, book, j)
         return 0, start_time  # test it
+
+    def is_readable(self, bdata, time):
+        """
+        Is readable
+        """
+        max_time = len(self._timing)
+        end_time = time + bdata
+        for j in range(time, min(end_time, max_time)):
+            if self._timing[j] >= 3:
+                return False
+        return True
 
     def __if_readable(self, bdata: Time, book: Book, time: Time) -> Tuple[int, int]:
         """
