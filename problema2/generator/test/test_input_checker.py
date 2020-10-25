@@ -1,10 +1,15 @@
 import unittest
-from input_checker import *
+from src.benchmark_checker import *
+from src.gen_benchmark import *
 
 class TestInputChecker(unittest.TestCase):
 
     def setUp(self):
-        self.checker = Checker(100, 100000, 1000, 10, 6, 10)
+        bookdata = BooksData(100000, 10)
+        readerdata = ReaderData(1000, 10)
+        num_of_libraries = 100
+        time = 6
+        self.checker = Checker(num_of_libraries, bookdata, readerdata, time)
 
     def test_create_book(self):
         self.assertEqual(Book(0,3,4), createBook("B 0 3 4"))
