@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.reader import Reader
+from src.reader import Reader, create_reader
 from src.book import Book
 
 
@@ -14,7 +14,7 @@ class ReaderTest(unittest.TestCase):
     def setUp(self):
         self.book_data = {0: 5, 1: 2, 3: 3}
         self.reader = Reader(books=self.book_data, location=1, max_weeks=6)
-        self.books = [Book(1, 0, 3), Book(0, 1, 5), Book(1, 2, 4), Book(1, 3, 2)]
+        self.books = [Book(0, 1, 3), Book(1, 0, 5), Book(2, 1, 4), Book(3, 1, 2)]
 
     def test_creation(self):
         """
@@ -29,11 +29,11 @@ class ReaderTest(unittest.TestCase):
         Test simple read book 0.
         """
         self.reader._timing = [3, 2, 2, 1, 1, 1]
-        score, time = self.reader.read(self.books[0], 0)
+        score, time = self.reader.read(self.books[0], 0, 3)
         self.assertEqual(3, score)
         self.assertEqual(6, time)
         self.assertEqual([3, 3, 3, 2, 2, 2], self.reader._timing)
-        score, time = self.reader.read(self.books[3], 4)
+        score, time = self.reader.read(self.books[3], 4, 5)
         self.assertEqual(0, score)
         self.assertEqual(7, time)
         self.assertEqual([3, 3, 3, 2, 3, 3], self.reader._timing)
@@ -43,7 +43,7 @@ class ReaderTest(unittest.TestCase):
         Test if Reader is not interested in books
         """
         try:
-            self.reader.read(self.books[2], 0)
+            self.reader.read(self.books[2], 0, 0)
             self.fail("Readed book not interested")
         except AssertionError:
             pass
@@ -53,7 +53,24 @@ class ReaderTest(unittest.TestCase):
         Test if Book is in different location.
         """
         try:
-            self.reader.read(self.books[1], 0)
+            self.reader.read(self.books[1], 0, 1)
             self.fail("Readed book was not in the library")
         except AssertionError:
             pass
+
+
+class ReaderCreatorTest(unittest.TestCase):
+    """
+    Tests creator reader.
+    """
+
+    def setUp(self):
+        self.line = "R 2 1 0 1 1 1 2 1 3 1 4 1"
+
+    def test_reader_creator(self):
+        """
+        Create reader test
+        """
+        res = create_reader(self.line.split()[1:], 12)
+        expected = (2, Reader({0: 1, 1: 1, 2: 1, 3: 1, 4: 1}, 1, 12))
+        self.assertEqual(expected, res)

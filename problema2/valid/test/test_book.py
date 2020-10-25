@@ -2,21 +2,21 @@
 
 import unittest
 
-from src.book import Book
+from src.book import Book, create_book
 
 
 class BookTest(unittest.TestCase):
     """
-    Reader test
+    Book test
     """
 
     def setUp(self):
-        self.book = Book(0, 1, 3)
-        self.book2 = Book(1, 0, 3)
+        self.book = Book(1, 0, 3)
+        self.book2 = Book(0, 1, 3)
 
-    def test_reader_creation(self):
+    def test_book_creation(self):
         """
-        Tests reader creation
+        Tests book creation
         """
         self.assertEqual(0, self.book._location)
         self.assertEqual(1, self.book.id_book)
@@ -43,12 +43,12 @@ class BookTest(unittest.TestCase):
         Test read action
         """
         self.assertEqual(0, self.book._internal_time)
-        self.book.read(3)
+        self.book.read(3, 0)
         self.assertEqual(3, self.book._internal_time)
-        self.book.read(5)
+        self.book.read(5, 1)
         self.assertEqual(5, self.book._internal_time)
         try:
-            self.book.read(1)
+            self.book.read(1, 2)
             self.fail()
         except AssertionError:
             pass
@@ -61,5 +61,22 @@ class BookTest(unittest.TestCase):
         self.book.move(1, 5)
         self.assertEqual(1, self.book._location)
         self.assertEqual(5, self.book._internal_time)
-        self.book.read(8)
+        self.book.read(8, 3)
         self.assertEqual(8, self.book._internal_time)
+
+
+class CreateBookTest(unittest.TestCase):
+    """
+    Test create_book, which will we used to parse
+    the book.
+    """
+
+    def setUp(self):
+        self.line = "B 0 0 5"
+
+    def test_create(self):
+        """
+        Test creates, which is a util to parse
+        """
+        book = create_book(self.line.split(" ")[1:])
+        self.assertEqual(Book(0, 0, 5), book)

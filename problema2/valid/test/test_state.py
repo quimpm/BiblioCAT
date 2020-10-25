@@ -17,11 +17,11 @@ class StateTest(unittest.TestCase):
     def setUp(self):
         self.transition = [[0, 2, 3], [3, 0, 4], [3, 4, 0]]
         self.books = [
-            Book(1, 0, 5),
-            Book(0, 1, 3),
-            Book(1, 2, 10),
-            Book(1, 3, 2),
-            Book(2, 4, 8),
+            Book(0, 1, 5),
+            Book(1, 0, 3),
+            Book(2, 1, 10),
+            Book(3, 1, 2),
+            Book(4, 2, 8),
         ]
         self.readers = [
             Reader({0: 3, 1: 2}, 0, 10),
