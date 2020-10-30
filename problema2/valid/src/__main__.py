@@ -13,8 +13,8 @@ TODO
 """
 
 import argparse
-from .parse_input import parse_input
 from functools import reduce
+from .parse_input import parse_input
 
 
 def main():
