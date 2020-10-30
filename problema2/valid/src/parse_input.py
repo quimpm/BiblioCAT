@@ -12,6 +12,10 @@ from .libraries import LibraryCreator
 
 
 class InputParser:
+    """
+    Input parser. Builder of State
+    """
+
     lc: Optional[LibraryCreator]
     books: List[Book]
     readers: List[Tuple[int, Reader]]
@@ -21,11 +25,12 @@ class InputParser:
         self.lc = None
         self.books = []
         self.readers = []
-        self.max_weeks = 12  # hard-coded value at the moment
+        self.max_weeks = -1
         self.parser = {
             "R": self.__util_reader,
             "B": self.__util_book,
             "L": self.__util_library,
+            "T": self.__util_time,
         }
 
     def __util_reader(self, line: List[str]) -> None:
@@ -38,6 +43,9 @@ class InputParser:
         if self.lc is None:
             self.lc = LibraryCreator(len(line) - 1)
         self.lc.parse_line(line)
+
+    def __util_time(self, line: List[str]) -> None:
+        self.max_weeks = int(line[0])
 
     def parse_line(self, line: str) -> None:
         """

@@ -5,6 +5,7 @@
 
 \begin{verbatim}
 % separados por un espacio %
+tiempoSemanas = "T", % numero %
 biblioteca = "L", id, { % { tiempo id j | j <- [ 0 .. id_max] }  % }
 id = % numero unico por tipo %
 tiempo id j = % tiempo de tranporte de un libro desde la
