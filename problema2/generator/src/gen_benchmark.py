@@ -44,11 +44,7 @@ class Generator():
 
     """
     Create and write in to the benchmark file all the libraries.
-    @param num_of_libraries: Number of libraries to create
-    @param output_file: File where to write the libraries
-    @param time: Total time value to resolve the problem
     """
-
     def create_libraries(self):
         max_transportation_time = self.time + 1
         for i in range(self.num_of_libraries):
@@ -63,9 +59,6 @@ class Generator():
 
     """
     Create and write in to the benchmark file all the books.
-    @param bookdata: namedtuple with the book creation specification values.
-    @param output_file: File where to write the libraries
-    @param num_of_libraries: Number of libraries to create
     """
     def create_books(self):
         for i in range(self.bookdata.num):
@@ -76,11 +69,6 @@ class Generator():
 
     """
     Create and write in to the benchmark file all the books.
-    @param readerdata: namedtuple with the reader creation specification values.
-    @param bookdata: namedtuple with the book creation specification values.
-    @param output_file: File where to write the libraries
-    @param time: Total time value to resolve the problem
-    @param num_of_libraries: Number of libraries to create
     """
     def create_readers(self):
         assert self.readerdata.max_books < self.bookdata.num, "Number of books that a reader can read must be lower than the total num of books!!"
@@ -94,6 +82,9 @@ class Generator():
             reader_spec += "\n"
             self.output_file.write(reader_spec)
 
+    """
+    Create benchmark
+    """
     def create(self):
         self.output_file.write("T "+str(self.time)+"\n")
         self.create_libraries()
@@ -101,6 +92,9 @@ class Generator():
         self.create_readers()
 
 
+    """
+    Check Values of the generated benchamark
+    """
     def checkValues(self):
         generated_file = open(self.filepath, "r")
         for line in generated_file:
