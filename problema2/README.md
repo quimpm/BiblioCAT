@@ -9,18 +9,19 @@ Las librerias de Cataluña tienen un sistema de intercanvio de libros, de forma 
 
 
 ### Especificaciones
-* Lo que les gustaria a las bibliotecas és maximizar el tiempo en que los libros estan generando valor, es decir, el tiempo en que un libro esta en manos de algún usuario. \textbf{Cada libro genera un valor X.} 
-* Se ha de tener en cuenta, que mientras un libro esta siendo transportado este \textbf{NO} genera valor. 
-* Dependiendo del lector, i el libro que vaia a leer (en funcion de si le gusta mas o menos), variarà el \textbf{tiempo T} en que se lee el libro.
+* Lo que les gustaria a las bibliotecas és maximizar el tiempo en que los libros estan generando valor, es decir, el tiempo en que un libro esta en manos de algún usuario. *Cada libro genera un valor X. Se tendra maximizar teniendo en quenta el tiempo màximo T*
+* Se ha de tener en cuenta, que mientras un libro esta siendo transportado este *NO* genera valor. 
+* Dependiendo del lector, i el libro que vaia a leer (en funcion de si le gusta mas o menos), variarà el *tiempo T* en que se lee el libro.
 * Si hay varias personas que quieren leer un libro, estas se añadiran a una lista de espera, i esperaran a recibir noticias de la biblioteca quando esté disponible.
-* Una persona, como màximo, podra tener tres libros a la vez. \textbf{OJO: NO tres libros por biblioteca, tres libros en TOTAL}. 
+* Una persona, como màximo, podra tener tres libros a la vez. *OJO: NO tres libros por biblioteca, tres libros en TOTAL*. 
 
 
 ### Input File
 ``` 
-biblioteca = "L", id, { % { tiempo id j | j <- [ 0 .. id_max] }  % }
+tiempo = "T", tiempo_global
+biblioteca = "L", id, { % { tiempo transporte id j | j <- [ 0 .. id_max] }  % }
 id = % numero unico por tipo %
-tiempo id j = % tiempo de tranporte de un libro desde la
+tiempo transporte id j = % tiempo de tranporte de un libro desde la
               - libreria id hasta j
               %
 libro = "B", id, id biblioteca, valor
@@ -33,6 +34,7 @@ tiempo lectura = % numero de tiempo que se
 
 Por ejemplo:
 ```
+T 6
 L 0 0 2 3
 L 1 3 0 4
 L 2 3 4 0
@@ -47,10 +49,12 @@ R 2 1 0 1 1 1 2 1 3 1 4 1
 R 3 2 2 5 4 5
 ```
 
+Vemos que el valor del tiempo T en el que se ha de realizar la optimización es de 
+6.
 
 En este ejemplo, hay tres bibliotecas (L), donde el coste de llevar un libro
-de la biblioteca ``0'' hasta la ``1'' es de 2 i el coste de llevar
-un libro de la biblioteca ``1'' hasta la ``0'' es de 3. Además, el coste de
+de la biblioteca ''0'' hasta la ''1'' es de 2 i el coste de llevar
+un libro de la biblioteca ''1'' hasta la ''0'' es de 3. Además, el coste de
 llevar un libro de una biblioteca a si misma siempre es de 0.
 
 
@@ -61,8 +65,8 @@ ser leido por un lector.
 
 
 Finalmente, se puede apreciar que el lector con id ``0'', que esta afiliado
-a la biblioteca ``0'', quiere leer los libros ``0'' y ``1'', que tardará en
-hacerlo ``10'' y ``2'' respectivamente.
+a la biblioteca ''0'', quiere leer los libros ''0'' y ''1'', que tardará en
+hacerlo ''10'' y ''2'' respectivamente.
 
 ### Output File
 ##### Gramàtica:
