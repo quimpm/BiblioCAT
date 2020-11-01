@@ -2,7 +2,7 @@
 #+AUTHOR: sergisi
 
 * PROJ Validator
-** TODO Test State
-** TODO Reader.read
-** TODO parser input
-** TODO parser output
+** DONE Test State
+** DONE Reader.read
+** DONE parser input
+** DONE parser output
