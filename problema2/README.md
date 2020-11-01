@@ -1,14 +1,13 @@
-# TITLE: BiblioCAT
-# AUTHORS: quimpm, sergisi
+# BiblioCAT :books:
 
-### Introducción
+## Introducción
 Las libros nos permiten descubrir múndos de fantasia así como entender mejor el mundo en el que vivimos. Nos permiten aprender todo tipo de cosas, desde "Teo va a la escuela" a "Compilers: Principles, Techniques, and Tools".
 
 
 Las librerias de Cataluña tienen un sistema de intercanvio de libros, de forma que, quando alguien se dirige a una biblioteca a buscar un libro para aprender a programar Haskell, y el/la bibliotecario/a le diga "I eso qué és?!?!?", haya la posibilidad de pedirle a otra biblioteca que tenga el libro que el/la valiente aspirante/a a aprender Haskell pedia.
 
 
-### Especificaciones
+## Especificaciones
 * Lo que les gustaria a las bibliotecas és maximizar el tiempo en que los libros estan generando valor, es decir, el tiempo en que un libro esta en manos de algún usuario. *Cada libro genera un valor X. Se tendra maximizar teniendo en quenta el tiempo màximo T*
 * Se ha de tener en cuenta, que mientras un libro esta siendo transportado este *NO* genera valor. 
 * Dependiendo del lector, i el libro que vaia a leer (en funcion de si le gusta mas o menos), variarà el *tiempo T* en que se lee el libro.
@@ -16,7 +15,7 @@ Las librerias de Cataluña tienen un sistema de intercanvio de libros, de forma 
 * Una persona, como màximo, podra tener tres libros a la vez. *OJO: NO tres libros por biblioteca, tres libros en TOTAL*. 
 
 
-### Input File
+## Input File
 ``` 
 tiempo = "T", tiempo_global
 biblioteca = "L", id, { % { tiempo transporte id j | j <- [ 0 .. id_max] }  % }
@@ -68,8 +67,8 @@ Finalmente, se puede apreciar que el lector con id ``0'', que esta afiliado
 a la biblioteca ''0'', quiere leer los libros ''0'' y ''1'', que tardará en
 hacerlo ''10'' y ''2'' respectivamente.
 
-### Output File
-##### Gramàtica:
+## Output File
+## Gramàtica:
 ```
 mover libro = id libro, "m", id biblioteca
 leer libro = id libro, "r", id lector
@@ -137,11 +136,11 @@ Entonces, este fichero:
 4 r 1
 ```
 Generará 15 puntos, ya que:
-* El lector 0 tiene los 5 primeros dias ocupados.
-* El libro 4 está hasta el octavo dia ocupado, los
++ El lector 0 tiene los 5 primeros dias ocupados.
++ El libro 4 está hasta el octavo dia ocupado, los
    5 primeros sin hacer nada, y del $[5, 8)$ esta
    siendo leido por el lector 1
-* El libro 4 se empieza a leer del 8o dia hasta el 11o.
++ El libro 4 se empieza a leer del 8o dia hasta el 11o.
 
 Mientras, el siguiente output:
 ```
@@ -154,5 +153,10 @@ Mientras, el siguiente output:
 Generará 20 puntos, pues el libro 4 es leido por dos
 lectores.
 
-### Entrega i Evaluación
+## Entrega i Evaluación
 Para hacer vàlida vuestra participación nos tendreis que entregar el output de vuestro programa con el formato correcto descrito en el apartado anterior. Para comprovar la score de vuestra solución, podeis descargaros y ejecutar el programa que utilizaremos para determinar vuestra score: [LINK A GITHUB]. 
+
+
+# Creadors del repte
++ quimpm
++ sergisi
