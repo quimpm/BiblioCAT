@@ -69,9 +69,7 @@ class TestInputChecker(unittest.TestCase):
         self.assertFalse(checker.check(Reader(0, 4, [(100000, 3), (232, 5)])))
         self.assertFalse(checker.check(Reader(0, 4, [(8342, 11), (232, 5)])))
         self.assertFalse(checker.check(Reader(0, 4, [(8342, 11), (232, 5)])))
-        self.assertFalse(
-            checker.check(Reader(0, 4, [(8342, 11), (232, 5), (8342, 11)]))
-        )
+        self.assertFalse(checker.check(Reader(0, 4, [(8342, 11), (232, 5), (8342, 11)])))
         self.assertFalse(checker.check(Reader(0, 4, [])))
 
     def test_check_time(self):
